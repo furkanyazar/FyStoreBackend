@@ -17,5 +17,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(p => p.PasswordSalt).HasColumnName("PasswordSalt");
         builder.Property(p => p.PasswordHash).HasColumnName("PasswordHash");
         builder.Property(p => p.Status).HasColumnName("Status").HasDefaultValue(true);
+        builder.HasMany(p => p.UserOperationClaims);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess.Dynamic;
-using Core.Entities.Abstract;
+using Core.Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 namespace Core.DataAccess.EntityFramework;
 
 public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
-    where TEntity : class, IEntity, new()
+    where TEntity : Entity
     where TContext : DbContext, new()
 {
     public TEntity Get(Expression<Func<TEntity, bool>> predicate,
@@ -19,8 +19,8 @@ public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEnti
         return queryable.FirstOrDefault(predicate);
     }
 
-    public IList<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null,
-                                  Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
+    public List<TEntity> GetList(Expression<Func<TEntity, bool>> predicate = null,
+                                 Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
     {
         using var context = new TContext();
         IQueryable<TEntity> queryable = context.Set<TEntity>();
@@ -28,8 +28,8 @@ public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEnti
         return predicate == null ? queryable.ToList() : queryable.Where(predicate).ToList();
     }
 
-    public IList<TEntity> GetListByDynamic(Dynamic.Dynamic dynamic,
-                                           Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
+    public List<TEntity> GetListByDynamic(Dynamic.Dynamic dynamic,
+                                          Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null)
     {
         using var context = new TContext();
         IQueryable<TEntity> queryable = context.Set<TEntity>().ToDynamic(dynamic);

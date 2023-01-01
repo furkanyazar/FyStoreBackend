@@ -95,8 +95,7 @@ app.ConfigureCustomExceptionMiddleware();
 
 app.UseCors(builder => builder.AllowAnyOrigin()
                               .AllowAnyHeader()
-                              .AllowAnyMethod()
-                              .AllowCredentials());
+                              .AllowAnyMethod());
 
 app.UseHttpsRedirection();
 

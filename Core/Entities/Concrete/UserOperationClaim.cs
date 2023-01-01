@@ -1,10 +1,7 @@
-﻿using Core.Entities.Abstract;
-
-namespace Core.Entities.Concrete
+﻿namespace Core.Entities.Concrete
 {
-    public class UserOperationClaim : IEntity
+    public class UserOperationClaim : Entity
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
         public int OperationClaimId { get; set; }
 
@@ -15,7 +12,7 @@ namespace Core.Entities.Concrete
         {
         }
 
-        public UserOperationClaim(int id, int userId, int operationClaimId)
+        public UserOperationClaim(int id, int userId, int operationClaimId) : this()
         {
             Id = id;
             UserId = userId;

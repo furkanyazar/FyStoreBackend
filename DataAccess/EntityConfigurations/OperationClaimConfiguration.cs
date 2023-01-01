@@ -14,6 +14,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         builder.HasIndex(p => p.Name, "UK_Users_Name").IsUnique();
         builder.Property(p => p.Value).HasColumnName("Value");
         builder.HasIndex(p => p.Value, "UK_Users_Value").IsUnique();
+        builder.HasMany(p => p.UserOperationClaims);
 
         OperationClaim[] operationClaimSeeds = { new(1, "Yönetici", "admin"), new(2, "Kullanıcı", "user") };
         builder.HasData(operationClaimSeeds);

@@ -1,10 +1,7 @@
-﻿using Core.Entities.Abstract;
+﻿namespace Core.Entities.Concrete;
 
-namespace Core.Entities.Concrete;
-
-public class User : IEntity
+public class User : Entity
 {
-    public int Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Email { get; set; }
@@ -19,7 +16,7 @@ public class User : IEntity
     }
 
     public User(int id, string firstName, string lastName, string email,
-                byte[] passwordSalt, byte[] passwordHash, bool status)
+                byte[] passwordSalt, byte[] passwordHash, bool status) : this()
     {
         Id = id;
         FirstName = firstName;
