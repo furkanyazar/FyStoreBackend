@@ -1,6 +1,6 @@
-﻿namespace Entities.Dtos;
+﻿namespace Entities.Dtos.Categories;
 
-public class CategoryGetListDto
+public class CategoryListDto
 {
     public int Id { get; set; }
 

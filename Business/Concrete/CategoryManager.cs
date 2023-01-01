@@ -3,7 +3,7 @@ using Business.Abstract;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.Dtos;
+using Entities.Dtos.Categories;
 
 namespace Business.Concrete;
 
@@ -18,10 +18,10 @@ public class CategoryManager : ICategoryService
         _mapper = mapper;
     }
 
-    public IDataResult<List<CategoryGetListDto>> GetList()
+    public IDataResult<List<CategoryListDto>> GetList()
     {
         List<Category> categories = _categoryDal.GetList();
-        List<CategoryGetListDto> mappedCategories = _mapper.Map<List<CategoryGetListDto>>(categories);
-        return new SuccessDataResult<List<CategoryGetListDto>>(mappedCategories);
+        List<CategoryListDto> mappedCategories = _mapper.Map<List<CategoryListDto>>(categories);
+        return new SuccessDataResult<List<CategoryListDto>>(mappedCategories);
     }
 }

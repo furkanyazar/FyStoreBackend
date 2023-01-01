@@ -1,9 +1,9 @@
 ﻿using Core.Utilities.Results;
-using Entities.Dtos;
+using Entities.Dtos.Categories;
 
 namespace Business.Abstract;
 
 public interface ICategoryService
 {
-    IDataResult<List<CategoryGetListDto>> GetList();
+    IDataResult<List<CategoryListDto>> GetList();
 }
