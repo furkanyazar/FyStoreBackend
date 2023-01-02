@@ -12,5 +12,8 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.Property(p => p.Id).HasColumnName("Id");
         builder.Property(p => p.Name).HasColumnName("Name");
         builder.HasIndex(p => p.Name, "UK_Categories_Name").IsUnique();
+
+        Category[] categorySeeds = { new(1, "Genel") };
+        builder.HasData(categorySeeds);
     }
 }

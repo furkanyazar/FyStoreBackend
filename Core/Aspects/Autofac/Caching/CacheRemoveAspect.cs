@@ -19,6 +19,6 @@ public class CacheRemoveAspect : MethodInterception
 
     protected override void OnSuccess(IInvocation invocation)
     {
-        _cacheManager.RemoveByPattern(_pattern);
+        _cacheManager.Remove(_pattern);
     }
 }

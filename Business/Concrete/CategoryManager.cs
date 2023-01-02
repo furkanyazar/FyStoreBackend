@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -18,6 +19,7 @@ public class CategoryManager : ICategoryService
         _mapper = mapper;
     }
 
+    [CacheAspect]
     public IDataResult<List<CategoryListDto>> GetList()
     {
         List<Category> categories = _categoryDal.GetList();

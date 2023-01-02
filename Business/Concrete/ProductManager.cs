@@ -26,7 +26,7 @@ public class ProductManager : IProductService
     }
 
     [ValidationAspect(typeof(AddProductDtoValidator))]
-    [CacheRemoveAspect("IProductService.Get")]
+    [CacheRemoveAspect("Business.Abstract.IProductService.GetList()")]
     public IResult Add(AddProductDto addProductDto)
     {
         Product newProduct = _mapper.Map<Product>(addProductDto);
@@ -40,7 +40,7 @@ public class ProductManager : IProductService
         return new SuccessResult();
     }
 
-    [CacheRemoveAspect("IProductService.Get")]
+    [CacheRemoveAspect("Business.Abstract.IProductService.GetList()")]
     public IResult Delete(int id)
     {
         Product product = _productDal.Get(c => c.Id == id);
@@ -75,7 +75,7 @@ public class ProductManager : IProductService
     }
 
     [ValidationAspect(typeof(UpdateProductDtoValidator))]
-    [CacheRemoveAspect("IProductService.Get")]
+    [CacheRemoveAspect("Business.Abstract.IProductService.GetList()")]
     public IResult Update(UpdateProductDto updateProductDto)
     {
         Product productToUpdate = _productDal.Get(c => c.Id == updateProductDto.Id);
