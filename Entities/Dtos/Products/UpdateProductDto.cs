@@ -1,6 +1,8 @@
-﻿namespace Entities.Dtos.Products;
+﻿using Core.Entities.Abstract;
 
-public class UpdateProductDto
+namespace Entities.Dtos.Products;
+
+public class UpdateProductDto : IDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

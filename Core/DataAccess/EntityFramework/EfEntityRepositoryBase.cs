@@ -1,5 +1,5 @@
 ﻿using Core.DataAccess.Dynamic;
-using Core.Entities.Concrete;
+using Core.Entities.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 namespace Core.DataAccess.EntityFramework;
 
 public class EfEntityRepositoryBase<TEntity, TContext> : IEntityRepository<TEntity>
-    where TEntity : Entity
+    where TEntity : class, IEntity, new()
     where TContext : DbContext, new()
 {
     public TEntity Get(Expression<Func<TEntity, bool>> predicate,

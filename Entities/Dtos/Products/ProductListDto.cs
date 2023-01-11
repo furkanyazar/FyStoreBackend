@@ -1,6 +1,8 @@
-﻿namespace Entities.Dtos.Products;
+﻿using Core.Entities.Abstract;
 
-public class ProductListDto
+namespace Entities.Dtos.Products;
+
+public class ProductListDto : IDto
 {
     public int Id { get; set; }
     public string CategoryName { get; set; }

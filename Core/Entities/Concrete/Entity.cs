@@ -1,6 +1,8 @@
-﻿namespace Core.Entities.Concrete;
+﻿using Core.Entities.Abstract;
 
-public class Entity
+namespace Core.Entities.Concrete;
+
+public class Entity : IEntity
 {
     public int Id { get; set; }
     public DateTime DateOfCreate { get; set; }

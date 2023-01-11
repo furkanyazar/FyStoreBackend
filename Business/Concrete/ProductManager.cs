@@ -98,9 +98,8 @@ public class ProductManager : IProductService
     private IResult CheckIfNameExists(Product product)
     {
         Product productToCheck = _productDal.Get(c => c.Id != product.Id && c.Name == product.Name);
-        if (productToCheck is not null)
-            return new ErrorResult(BusinessMessages.AlreadyExist);
-
-        return new SuccessResult();
+        return productToCheck is not null
+            ? new ErrorResult(BusinessMessages.AlreadyExist)
+            : new SuccessResult();
     }
 }
