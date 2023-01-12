@@ -60,12 +60,8 @@ public class ProductManager : IProductService
     }
 
     [CacheAspect]
-    public IDataResult<List<ProductListDto>> GetList()
-    {
-        List<Product> products = _productDal.GetList(include: c => c.Include(c => c.Category));
-        List<ProductListDto> mappedProducts = _mapper.Map<List<ProductListDto>>(products);
-        return new SuccessDataResult<List<ProductListDto>>(mappedProducts);
-    }
+    public IDataResult<List<ProductListDto>> GetList() =>
+        new SuccessDataResult<List<ProductListDto>>(_productDal.GetListWithCategory());
 
     public IDataResult<List<ProductListDto>> GetListByDynamic(Dynamic dynamic)
     {
