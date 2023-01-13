@@ -17,7 +17,7 @@ public class FyStoreDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB; Database=FyStore; Trusted_Connection=true");
+        optionsBuilder.UseNpgsql(@"Host=localhost;Database=FyStore;Username=postgres;Password=1234");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,8 +35,8 @@ public class FyStoreDbContext : DbContext
         {
             _ = data.State switch
             {
-                EntityState.Added => data.Entity.DateOfCreate = data.Entity.DateOfLastUpdate = DateTime.Now,
-                EntityState.Modified => data.Entity.DateOfLastUpdate = DateTime.Now
+                EntityState.Added => data.Entity.DateOfCreate = data.Entity.DateOfLastUpdate = DateTime.UtcNow,
+                EntityState.Modified => data.Entity.DateOfLastUpdate = DateTime.UtcNow
             };
         }
 

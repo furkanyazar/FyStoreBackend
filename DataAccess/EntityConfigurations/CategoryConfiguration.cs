@@ -13,7 +13,7 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         builder.Property(p => p.Name).HasColumnName("Name");
         builder.HasIndex(p => p.Name, "UK_Categories_Name").IsUnique();
 
-        Category[] categorySeeds = { new(1, "Genel") };
+        Category[] categorySeeds = { new(1, "Computer"), new(2, "Phone") };
         builder.HasData(categorySeeds);
     }
 }

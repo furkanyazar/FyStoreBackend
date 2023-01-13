@@ -13,10 +13,10 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(p => p.FirstName).HasColumnName("FirstName");
         builder.Property(p => p.LastName).HasColumnName("LastName");
         builder.Property(p => p.Email).HasColumnName("Email");
-        builder.HasIndex(p => p.Email, "UK_Users_Email").IsUnique();
         builder.Property(p => p.PasswordSalt).HasColumnName("PasswordSalt");
         builder.Property(p => p.PasswordHash).HasColumnName("PasswordHash");
         builder.Property(p => p.Status).HasColumnName("Status").HasDefaultValue(true);
+        builder.HasIndex(p => p.Email, "UK_Users_Email").IsUnique();
         builder.HasMany(p => p.UserOperationClaims);
     }
 }
