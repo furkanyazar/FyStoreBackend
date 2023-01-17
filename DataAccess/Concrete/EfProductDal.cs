@@ -17,6 +17,7 @@ public class EfProductDal : EfEntityRepositoryBase<Product, FyStoreDbContext>, I
                      {
                          Id = p.Id,
                          Name = p.Name,
+                         Description = p.Description,
                          UnitPrice = p.UnitPrice,
                          UnitsInStock = p.UnitsInStock,
                          CategoryName = c.Name

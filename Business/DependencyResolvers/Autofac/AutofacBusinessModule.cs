@@ -19,6 +19,9 @@ public class AutofacBusinessModule : Module
         builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
         builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
 
+        builder.RegisterType<FeaturedProductManager>().As<IFeaturedProductService>().SingleInstance();
+        builder.RegisterType<EfFeaturedProductDal>().As<IFeaturedProductDal>().SingleInstance();
+
         var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
         builder.RegisterAssemblyTypes(assembly)

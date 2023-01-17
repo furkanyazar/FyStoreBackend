@@ -1,10 +1,11 @@
 ﻿using Core.Entities.Abstract;
 
-namespace Entities.Dtos.Products;
+namespace Entities.Dtos.FeaturedProducts;
 
-public class ProductListDto : IDto
+public class FeaturedProductListDto : IDto
 {
-    public int Id { get; set; }
+    public int ProductId { get; set; }
+    public string ImageUrl { get; set; }
     public string CategoryName { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
