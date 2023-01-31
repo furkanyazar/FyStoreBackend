@@ -71,6 +71,7 @@ builder.Services.AddSwaggerGen(opt =>
 // Loggers
 builder.Services.AddTransient<FileLogger>();
 builder.Services.AddTransient<MsSqlLogger>();
+builder.Services.AddTransient<PostgreSqlLogger>();
 
 // Custom dependency resolvers
 builder.Services.AddDependencyResolvers(new ICoreModule[] { new CoreModule() });

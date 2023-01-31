@@ -29,6 +29,7 @@ public static class StringExtensions
     public static string ToValueCase(this string arg)
     {
         return Regex.Replace(Regex.Replace(arg.ToLower().ToEnglishCase(), @"[^0-9a-zA-Z:\s]+", ""), @"\s+", " ")
-                    .Replace(" ", "-").Trim();
+                    .Replace(" ", "-")
+                    .Trim();
     }
 }

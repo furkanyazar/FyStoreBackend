@@ -5,21 +5,21 @@ using Serilog;
 
 namespace Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 
-public class MsSqlLogger : LoggerServiceBase
+public class PostgreSqlLogger : LoggerServiceBase
 {
-    public MsSqlLogger(IConfiguration configuration)
+    public PostgreSqlLogger(IConfiguration configuration)
     {
         var logConfig =
-            configuration.GetSection("SeriLogConfigurations:MsSqlConfiguration").Get<MsSqlConfiguration>()
+            configuration.GetSection("SeriLogConfigurations:PostgreSqlConfiguration").Get<PostgreSqlConfiguration>()
             ?? throw new Exception(SerilogMessages.NullOptionsMessage);
 
         string conString = logConfig.ConnectionString;
         string tableName = logConfig.TableName;
 
         Logger = new LoggerConfiguration()
-            .WriteTo.MSSqlServer(tableName: tableName,
-                                 connectionString: conString,
-                                 autoCreateSqlTable: true)
+            .WriteTo.PostgreSQL(tableName: tableName,
+                                connectionString: conString,
+                                needAutoCreateTable: true)
             .CreateLogger();
     }
 }

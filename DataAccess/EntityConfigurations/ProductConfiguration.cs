@@ -12,7 +12,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
         builder.Property(p => p.Id).HasColumnName("Id");
         builder.Property(p => p.CategoryId).HasColumnName("CategoryId");
         builder.Property(p => p.Name).HasColumnName("Name");
-        builder.Property(p => p.Description).HasColumnName("Description");
+        builder.Property(p => p.Description).HasColumnName("Description").IsRequired(false);
         builder.Property(p => p.UnitPrice).HasColumnName("UnitPrice");
         builder.Property(p => p.UnitsInStock).HasColumnName("UnitsInStock");
         builder.HasIndex(p => p.Name, "UK_Products_Name").IsUnique();

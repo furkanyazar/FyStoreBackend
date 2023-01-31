@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Business.Abstract;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Dtos.FeaturedProducts;
@@ -17,6 +18,7 @@ public class FeaturedProductManager : IFeaturedProductService
         _mapper = mapper;
     }
 
+    [CacheAspect]
     public IDataResult<List<FeaturedProductListDto>> GetList() =>
         new SuccessDataResult<List<FeaturedProductListDto>>(_featuredProductDal.GetListWithDetail());
 }

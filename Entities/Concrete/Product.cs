@@ -1,4 +1,4 @@
-﻿using Core.Entities.Concrete;
+﻿using Core.Entities.Abstract;
 
 namespace Entities.Concrete;
 
@@ -6,7 +6,7 @@ public class Product : Entity
 {
     public int CategoryId { get; set; }
     public string Name { get; set; }
-    public string Description { get; set; }
+    public string? Description { get; set; }
     public decimal UnitPrice { get; set; }
     public short UnitsInStock { get; set; }
 

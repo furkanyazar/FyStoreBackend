@@ -3,7 +3,9 @@ using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation.Products;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.DataAccess.Dynamic;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -25,8 +27,9 @@ public class ProductManager : IProductService
         _mapper = mapper;
     }
 
+    [LogAspect(typeof(FileLogger))]
     [ValidationAspect(typeof(AddProductDtoValidator))]
-    [CacheRemoveAspect("Business.Abstract.IProductService.GetList()")]
+    [CacheRemoveAspect("IProductService.Get")]
     public IResult Add(AddProductDto addProductDto)
     {
         Product newProduct = _mapper.Map<Product>(addProductDto);
@@ -40,7 +43,8 @@ public class ProductManager : IProductService
         return new SuccessResult();
     }
 
-    [CacheRemoveAspect("Business.Abstract.IProductService.GetList()")]
+    [LogAspect(typeof(FileLogger))]
+    [CacheRemoveAspect("IProductService.Get")]
     public IResult Delete(int id)
     {
         Product product = _productDal.Get(c => c.Id == id);
@@ -70,8 +74,9 @@ public class ProductManager : IProductService
         return new SuccessDataResult<List<ProductListDto>>(mappedProducts);
     }
 
+    [LogAspect(typeof(FileLogger))]
     [ValidationAspect(typeof(UpdateProductDtoValidator))]
-    [CacheRemoveAspect("Business.Abstract.IProductService.GetList()")]
+    [CacheRemoveAspect("IProductService.Get")]
     public IResult Update(UpdateProductDto updateProductDto)
     {
         Product productToUpdate = _productDal.Get(c => c.Id == updateProductDto.Id);
@@ -79,6 +84,7 @@ public class ProductManager : IProductService
             return new ErrorResult(BusinessMessages.NotFound);
 
         productToUpdate.Name = updateProductDto.Name;
+        productToUpdate.Description = updateProductDto.Description;
         productToUpdate.UnitPrice = updateProductDto.UnitPrice;
         productToUpdate.UnitsInStock = updateProductDto.UnitsInStock;
 

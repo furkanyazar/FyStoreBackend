@@ -1,4 +1,5 @@
-﻿using Core.Entities.Concrete;
+﻿using Core.Entities.Abstract;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -18,7 +19,7 @@ public class FyStoreDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(@"Host=localhost;Database=FyStore;Username=postgres;Password=1234");
+        optionsBuilder.UseNpgsql("Host=localhost; Database=FyStore; Username=postgres; Password=1234");
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
