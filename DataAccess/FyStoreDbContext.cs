@@ -21,7 +21,7 @@ public class FyStoreDbContext : DbContext
     {
         //string conString = = "Server=(localdb)\\MSSQLLocalDB; Database=FyStore; Trusted_Connection=true";
         string conString =
-            "Server=furkanyazar.dev; Database=FyStore; User Id=furkanyazar; Password=*********; TrustServerCertificate=True;";
+            "Server=furkanyazar.dev; Database=FyStore; User Id=furkanya; Password=*********; TrustServerCertificate=True;";
 
         optionsBuilder.UseSqlServer(conString);
     }
