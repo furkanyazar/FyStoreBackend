@@ -19,7 +19,11 @@ public class FyStoreDbContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost; Database=FyStore; Username=postgres; Password=1234");
+        //string conString = = "Server=(localdb)\\MSSQLLocalDB; Database=FyStore; Trusted_Connection=true";
+        string conString =
+            "Server=furkanyazar.dev; Database=FyStore; User Id=furkanyazar; Password=*********; TrustServerCertificate=True;";
+
+        optionsBuilder.UseSqlServer(conString);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
